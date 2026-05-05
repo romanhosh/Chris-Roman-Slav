@@ -1,5 +1,11 @@
 # Chris-Roman-Slav
 # Car-Manager
+# Files:
+# Car.java - Chris
+# MaintenanceRecord.java - Chris
+# RoutineService.java - Roman
+# MajorRepair.java - Roman
+# Main.java - Slav
 # This program is a command line Car Maintenance History Recorder. The user enters
 # car information and logs maintenance records like oil changes and major repairs.
 # Records are stored in an ArrayList, can be printed, and the user can add new
