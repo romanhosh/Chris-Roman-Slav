@@ -9,6 +9,31 @@ public class Main {
     static String[] menuOptions = {"1. Add a car", "2. Select a car", "3. Exit"};
     static String[] carMenuOptions = {"1. Add maintenance record", "2. Print all records", "3. Search records", "4. Show summary", "5. Go back"};
 
+    // Make = letters + spaces only
+    public static boolean isValidMake(String s) {
+        return s.matches("[A-Za-z ]+");
+    }
+
+    // Model = letters + numbers + spaces
+    public static boolean isValidModel(String s) {
+        return s.matches("[A-Za-z0-9 ]+");
+    }
+
+    // Service name = letters + numbers + spaces
+    public static boolean isValidServiceName(String s) {
+        return s.matches("[A-Za-z0-9 ]+");
+    }
+
+    // VIN must be exactly 17 alphanumeric characters
+    public static boolean isValidVIN(String vin) {
+        return vin.matches("[A-Za-z0-9]{17}");
+    }
+
+    // Date must be MM/DD/YYYY
+    public static boolean isValidDate(String date) {
+        return date.matches("\\d{2}/\\d{2}/\\d{4}");
+    }
+
     public static void main(String[] args) {
         System.out.println("=== Car Maintenance History Recorder ===");
         int choice = 0;
@@ -39,15 +64,15 @@ public class Main {
     public static void addCar() {
         System.out.print("Enter car make: ");
         String make = scanner.nextLine().trim();
-        if (make.isEmpty()) {
-            System.out.println("Make cannot be empty. Car not added.");
+        if (!isValidMake(make)) {
+            System.out.println("Make must contain only letters and spaces. Car not added.");
             return;
         }
 
         System.out.print("Enter car model: ");
         String model = scanner.nextLine().trim();
-        if (model.isEmpty()) {
-            System.out.println("Model cannot be empty. Car not added.");
+        if (!isValidModel(model)) {
+            System.out.println("Model must contain only letters, numbers, and spaces. Car not added.");
             return;
         }
 
@@ -73,10 +98,10 @@ public class Main {
             return;
         }
 
-        System.out.print("Enter VIN: ");
+        System.out.print("Enter VIN (17 characters): ");
         String vin = scanner.nextLine().trim();
-        if (vin.isEmpty()) {
-            System.out.println("VIN cannot be empty. Car not added.");
+        if (!isValidVIN(vin)) {
+            System.out.println("VIN must be exactly 17 alphanumeric characters. Car not added.");
             return;
         }
 
@@ -157,8 +182,8 @@ public class Main {
 
         System.out.print("Enter service name: ");
         String serviceName = scanner.nextLine().trim();
-        if (serviceName.isEmpty()) {
-            System.out.println("Service name cannot be empty. Record not added.");
+        if (!isValidServiceName(serviceName)) {
+            System.out.println("Service name must contain only letters, numbers, and spaces. Record not added.");
             return;
         }
 
@@ -177,8 +202,8 @@ public class Main {
 
         System.out.print("Enter date (MM/DD/YYYY): ");
         String date = scanner.nextLine().trim();
-        if (date.isEmpty()) {
-            System.out.println("Date cannot be empty. Record not added.");
+        if (!isValidDate(date)) {
+            System.out.println("Invalid date format. Record not added.");
             return;
         }
 
